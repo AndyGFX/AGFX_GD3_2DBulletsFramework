@@ -1,15 +1,15 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Test_2DBF.gd" type="Script" id=1]
-[ext_resource path="res://Prefabs/BF_Projectiles/BF_Projectile.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Prefabs/Enemy/Enemy.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Prefabs/Enemy/Enemy.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Prefabs/BF_Origin/BF_Origin.tscn" type="PackedScene" id=3]
 
 [node name="Test_2DBF" type="Node2D"]
 script = ExtResource( 1 )
 
-[node name="BF_Projectile" parent="." instance=ExtResource( 2 )]
-position = Vector2( 256, 156 )
-speed = 20.0
-
-[node name="Enemy" parent="." instance=ExtResource( 3 )]
+[node name="Enemy" parent="." instance=ExtResource( 2 )]
 position = Vector2( 397, 155 )
+
+[node name="BF_Origin" parent="." instance=ExtResource( 3 )]
+position = Vector2( 180, 158 )
+

@@ -46,3 +46,20 @@ func LoadJSON(path):
 	load_file.open(path, File.READ)
 	return parse_json(load_file.get_as_text())	
 	pass
+	
+	
+func draw_circle_arc( canvas:CanvasItem, center, radius, angleFrom, angleTo, color ):
+	var nbPoints = 32
+	var pointsArc = PoolVector2Array()
+    
+	for i in range(nbPoints+1):
+		var anglePoint = angleFrom + i*(angleTo-angleFrom)/nbPoints
+		var point = center + Vector2( cos(deg2rad(anglePoint)), sin(deg2rad(anglePoint)) )* radius
+		pointsArc.push_back( point )
+        
+		canvas.draw_multiline(pointsArc, color)
+	
+	canvas.draw_line(center,pointsArc[0],color)
+	canvas.draw_line(center,pointsArc[pointsArc.size()-1],color)
+	pass
+

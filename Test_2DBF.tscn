@@ -11,5 +11,5 @@ script = ExtResource( 1 )
 position = Vector2( 397, 155 )
 
 [node name="BF_Origin" parent="." instance=ExtResource( 3 )]
-position = Vector2( 180, 158 )
-
+position = Vector2( 156.679, 172.789 )
+fireAngle = 15.0

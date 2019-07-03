@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Prefabs/BF_Emitter/BF_Emitter.gd" type="Script" id=1]
+[ext_resource path="res://Prefabs/BF_Origin/BF_Origin.tscn" type="PackedScene" id=2]
+
+[node name="BF_Emitter" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="BF_Origin1" parent="." instance=ExtResource( 2 )]
+dispersion = 5.0
+offsetSpawnPoint = Vector2( 16, 0 )
+
+[node name="BF_Origin2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 0, -6.594 )
+dispersion = 5.0
+offsetSpawnPoint = Vector2( 8, -8 )
+
+[node name="BF_Origin3" parent="." instance=ExtResource( 2 )]
+position = Vector2( 5.02434, 5.12902 )
+dispersion = 5.0
+offsetSpawnPoint = Vector2( 8, 8 )
+

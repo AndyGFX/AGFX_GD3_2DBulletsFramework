@@ -1,12 +1,14 @@
 tool
 extends Node2D
 
-export var fireAngle:float = 0
+export var dispersion:float = 0
 export var offsetSpawnPoint:Vector2 = Vector2()
 
+# set group
+const TYPE:String = "BULLET_ORIGIN"
 
-func _ready():	
-	
+func _ready():
+	add_to_group(TYPE)
 	pass
 	
 func _draw():
@@ -16,15 +18,16 @@ func _draw():
 	
 func preview_in_editor():
 	
-	self.draw_fov(self,$SpawnPoint.position + self.offsetSpawnPoint,64,-self.fireAngle,self.fireAngle,Color.red)
+	self.draw_fov(self,$SpawnPoint.position + self.offsetSpawnPoint,64,-self.dispersion,self.dispersion,Color.red)
 	
 	self.draw_line(
 		$SpawnPoint.position + self.offsetSpawnPoint,
-		$SpawnPoint.position + self.offsetSpawnPoint+Vector2(8,0),Color.green,2.1,true)
-	self.draw_line($SpawnPoint.position + self.offsetSpawnPoint+Vector2(0,-3),$SpawnPoint.position + self.offsetSpawnPoint+Vector2(0,2),Color.green,2,true)
+		$SpawnPoint.position + self.offsetSpawnPoint+Vector2(8,0),Color.green,1.5,true)
+	self.draw_line($SpawnPoint.position + self.offsetSpawnPoint+Vector2(0,-2),$SpawnPoint.position + self.offsetSpawnPoint+Vector2(0,2),Color.green,1.5,true)
 
-	self.draw_line($SpawnPoint.position+Vector2(0,-3),$SpawnPoint.position+Vector2(0,3),Color.red,2.1,false)
-	self.draw_line($SpawnPoint.position+Vector2(-3,0),$SpawnPoint.position+Vector2(3,0),Color.red,2.1,false)
+	# pivot (RED)
+	self.draw_line($SpawnPoint.position+Vector2(0,-3),$SpawnPoint.position+Vector2(0,3),Color.red,1.5,false)
+	self.draw_line($SpawnPoint.position+Vector2(-3,0),$SpawnPoint.position+Vector2(3,0),Color.red,1.5,false)
 	pass
 	
 func draw_fov( canvas:CanvasItem, center, radius, angleFrom, angleTo, color ):

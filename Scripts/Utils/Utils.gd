@@ -62,4 +62,19 @@ func draw_circle_arc( canvas:CanvasItem, center, radius, angleFrom, angleTo, col
 	canvas.draw_line(center,pointsArc[0],color)
 	canvas.draw_line(center,pointsArc[pointsArc.size()-1],color)
 	pass
+	
+func draw_fov( canvas:CanvasItem, center, radius, angleFrom, angleTo, color ):
+	
+	var pointsArc = PoolVector2Array()
+    
+	var point = center + Vector2( cos(deg2rad(angleFrom)), sin(deg2rad(angleFrom)) )* radius
+	pointsArc.push_back( point )
+	
+	point = center + Vector2( cos(deg2rad(angleTo)), sin(deg2rad(angleTo)) )* radius
+	pointsArc.push_back( point )
+        
+	canvas.draw_line(center,pointsArc[0],color)
+	canvas.draw_line(center,pointsArc[1],color)
+	canvas.draw_line(pointsArc[0],pointsArc[1],color)
+	pass	
 

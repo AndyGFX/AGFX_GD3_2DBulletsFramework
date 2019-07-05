@@ -12,3 +12,9 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
+
+
+func _on_Button_pressed():
+	
+	$BF_Emitter.Fire($CONTAINER)
+	pass # Replace with function body.

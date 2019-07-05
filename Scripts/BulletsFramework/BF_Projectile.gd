@@ -5,7 +5,7 @@ extends Area2D
 export var damage:float = 25
 
 # projectile moving speed
-export var speed:float = 200
+export var speed:float = 10
 
 # remove projectile after reach max distance
 export var maxDistance:float = 2000
@@ -35,11 +35,12 @@ func SetFireDirectionFromVector(dir:Vector2)->void:
 	velocity = dir
 
 # ---------------------------------------------------------
-# Set fire direction from angle
+# Set fire direction from angle (radians)
 # ---------------------------------------------------------
 func SetFireDirectionFromAngle(angle:float)->void:
-	self.velocity = Vector2(cos(angle), sin(angle))
-	$Sprite.rotation = angle
+	
+	self.velocity = Vector2(cos(deg2rad(angle)), sin(deg2rad(angle)))
+	
 	
 # ---------------------------------------------------------
 # On Update

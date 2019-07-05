@@ -3,7 +3,7 @@ extends Node2D
 
 export var dispersion:float = 0
 export var offsetSpawnPoint:float = 0
-export var previewInScene:bool = true
+export var preview:bool = true
 
 # set group
 const TYPE:String = "BULLET_ORIGIN"
@@ -15,27 +15,29 @@ func _ready():
 func _draw():
 	if Engine.is_editor_hint():
 		self.preview_in_editor()
-	if previewInScene:
+	if preview:
 		self.preview_in_editor()
 	pass
 	
 func preview_in_editor():
 	
 	# draw precision FOV
-	self.draw_fov(self,$SpawnPoint.position,64,-self.dispersion,self.dispersion,Color.red)
+	self.draw_fov(self,$SpawnPoint.position + (Vector2(1,0)*self.offsetSpawnPoint),64,-self.dispersion,self.dispersion,Color.red)
 	
 	# draw main projectile direction
 	self.draw_line(
-		$SpawnPoint.position + Vector2(1,0),
-		$SpawnPoint.position + Vector2(32,0),Color.green,1,true)
+		$SpawnPoint.position + (Vector2(1,0)*self.offsetSpawnPoint),
+		$SpawnPoint.position + (Vector2(8,0)*self.offsetSpawnPoint),Color.green,1,true)
 	
 	
 	self.draw_line(
-		$SpawnPoint.position + Vector2(1,0),
-		$SpawnPoint.position + Vector2(1,0)+Vector2(8,0),Color.green,1.5,true)
-		
-	self.draw_line($SpawnPoint.position + Vector2(0,-2),$SpawnPoint.position + Vector2(0,2),Color.green,1.5,true)
+		$SpawnPoint.position + (Vector2(1,0)*self.offsetSpawnPoint),
+		$SpawnPoint.position + (Vector2(1,0)*self.offsetSpawnPoint)+Vector2(8,0),Color.green,1.5,true)
+	self.draw_line($SpawnPoint.position + (Vector2(1,0)*self.offsetSpawnPoint)+Vector2(0,-2),$SpawnPoint.position + (Vector2(1,0)*self.offsetSpawnPoint)+Vector2(0,2),Color.green,1.5,true)
 
+	# pivot (RED)
+	self.draw_line($SpawnPoint.position+Vector2(0,-3),$SpawnPoint.position+Vector2(0,3),Color.red,1.5,false)
+	self.draw_line($SpawnPoint.position+Vector2(-3,0),$SpawnPoint.position+Vector2(3,0),Color.red,1.5,false)
 	pass
 	
 func draw_fov( canvas:CanvasItem, center, radius, angleFrom, angleTo, color ):

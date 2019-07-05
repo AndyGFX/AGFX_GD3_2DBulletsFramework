@@ -3,14 +3,17 @@
 [ext_resource path="res://Scripts/BulletsFramework/BF_Projectile.gd" type="Script" id=1]
 [ext_resource path="res://Prefabs/BF_Projectiles/BF_Projectile_1.png" type="Texture" id=2]
 
-[sub_resource type="CircleShape2D" id=1]
-radius = 5.0
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 5, 3 )
 
 [node name="BF_Projectile" type="Area2D"]
 script = ExtResource( 1 )
+speed = 100.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 5, 0 )
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 5, 0 )
 texture = ExtResource( 2 )

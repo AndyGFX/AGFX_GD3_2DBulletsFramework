@@ -25,7 +25,17 @@ func _ready():
 		if origin.is_in_group("BULLET_ORIGIN"):
 			self.origins.append(origin)
 	pass
-	
+
+# -------------------------------------------------------
+# Preview emitter setup in scene
+# -------------------------------------------------------
+func PreviewInScene(state:bool)->void:
+	for i in range(self.origins.size()):
+		self.origins[i].previewInScene = state
+
+# -------------------------------------------------------
+# Fire 
+# -------------------------------------------------------
 func Fire(container:Node2D)->void:
 	
 	if !self.fireIsEnabled: return
@@ -37,7 +47,11 @@ func Fire(container:Node2D)->void:
 	else:
 		self._FirePerOrigin()
 	pass
-	
+
+
+# -------------------------------------------------------
+# HELPERS
+# -------------------------------------------------------
 func _FireAtOnce(container:Node2D)->void:
 	for i in range(self.origins.size()):
 		self._FireFromOrigin(i,container)

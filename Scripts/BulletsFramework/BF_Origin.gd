@@ -2,7 +2,6 @@ tool
 extends Node2D
 
 export var dispersion:float = 0
-export var offsetSpawnPoint:float = 0
 export var previewInScene:bool = true
 
 # set group

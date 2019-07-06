@@ -34,4 +34,4 @@
 
 - ## Screenshot (from included **Test_2DBF** demo)
 
-![Alt text](screenshot/Godot_v3.1.1-stable_win64_2019-07-06_18-53-15.png?raw=true "PREVIEW")
+![Alt text](Screenshot/Godot_v3.1.1-stable_win64_2019-07-06_18-53-15.png?raw=true "PREVIEW")

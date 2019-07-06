@@ -10,14 +10,11 @@ script = ExtResource( 1 )
 position = Vector2( 0, -7 )
 rotation = -0.261799
 dispersion = 5.0
-offsetSpawnPoint = 8.0
 
 [node name="BF_Origin1" parent="." instance=ExtResource( 2 )]
 dispersion = 5.0
-offsetSpawnPoint = 8.0
 
 [node name="BF_Origin2" parent="." instance=ExtResource( 2 )]
 position = Vector2( 0, 7 )
 rotation = 0.261799
 dispersion = 5.0
-offsetSpawnPoint = 8.0

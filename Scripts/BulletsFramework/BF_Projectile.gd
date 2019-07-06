@@ -10,13 +10,16 @@ export var speed:float = 10
 # remove projectile after reach max distance
 export var maxDistance:float = 2000
 
+# remove projectile after reach defined time (0 = off)
+export var lifeTime:float = 0
+
 # set group
 const TYPE:String = "BULLET"
 
 # local variables
 var velocity:Vector2 = Vector2(1,0)
 var _startPosition = Vector2()
-
+var _localTimer:Timer
 
 # ---------------------------------------------------------
 # Prepare on ready
@@ -26,6 +29,10 @@ func _ready():
 	connect("area_entered", self, "_on_area_enter")
 	connect("body_entered", self, "_on_body_enter")
 	self._startPosition = self.get_position()	
+	
+	if self.lifeTime>0:
+		self._localTimer = Utils.create_timer(self.lifeTime, self, "Destroy", true)
+	
 	pass
 
 # ---------------------------------------------------------
@@ -59,7 +66,7 @@ func _physics_process(delta):
 # ---------------------------------------------------------
 func _on_area_enter(other):
 	if other.is_in_group("SOLID"):
-		queue_free() 
+		self.Destroy() 
 	pass
 
 # ---------------------------------------------------------
@@ -72,5 +79,9 @@ func _on_body_enter(other):
 		else:
 			print("WARNING: BF Projectile hit ENEMY without fnc SetDamage(damage) !")
 			pass
-		queue_free() 
+		self.Destroy()
 	pass  
+
+func Destroy()->void:
+	queue_free()
+	pass

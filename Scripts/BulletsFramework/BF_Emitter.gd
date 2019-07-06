@@ -39,6 +39,7 @@ func PreviewInScene(state:bool)->void:
 func Fire(container:Node2D)->void:
 	
 	if !self.fireIsEnabled: return
+	
 	self.fireIsEnabled = false
 	
 	if self.fireAtOnce:

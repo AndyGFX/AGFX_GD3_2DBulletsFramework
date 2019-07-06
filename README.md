@@ -5,7 +5,7 @@
         - define projectile spawn point
         - properties:
             - *dispersion* - decrease pricision
-            - *preview in scene* - draw pivot, direction and dispersion sice in scene (in editor permanently)
+            - *preview in scene* - draw pivot, direction and dispersion size in scene (in editor permanently)
         - node angle is used for base fire direction, final direction is direction +/- dispersion value
     - **BF_Emitter**
         - define emittor behaviours

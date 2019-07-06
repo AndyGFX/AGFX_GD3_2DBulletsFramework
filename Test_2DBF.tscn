@@ -15,6 +15,7 @@ position = Vector2( 397, 155 )
 position = Vector2( 95.0991, 142.468 )
 rotation = -0.356047
 projectilePrefab = ExtResource( 4 )
+fireDelay = 0.1
 
 [node name="Button" type="Button" parent="."]
 margin_left = 12.3202

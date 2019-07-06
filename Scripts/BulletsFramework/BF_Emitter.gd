@@ -4,7 +4,6 @@ extends Node2D
 export (PackedScene) var projectilePrefab
 export (float) var fireDelay = 0.5
 export (bool) var fireAtOnce = true
-export (bool) var delayPerFire = false # true = delay before next shoot per bullet on origin | true = fire at once on all origin
 
 var fireIsEnabled:bool = true
 
@@ -12,6 +11,10 @@ var fireIsEnabled:bool = true
 const TYPE:String = "BULLET_EMITTER"
 
 var origins:Array
+var sequenceEnabled:bool=false
+var currentTime:float = 0
+var currentOrigin:int = 0
+var container:Node2D
 
 func _ready():
 	
@@ -33,35 +36,58 @@ func PreviewInScene(state:bool)->void:
 	for i in range(self.origins.size()):
 		self.origins[i].previewInScene = state
 
+func SetProjectileSceneContainer(container:Node2D)->void:
+	self.container = container
+	
 # -------------------------------------------------------
 # Fire 
 # -------------------------------------------------------
-func Fire(container:Node2D)->void:
+func Fire()->void:
 	
 	if !self.fireIsEnabled: return
 	
-	self.fireIsEnabled = false
-	
 	if self.fireAtOnce:
-		self._FireAtOnce(container)
+		self._FireAtOnce()
 		self.fireIsEnabled = true
 	else:
 		self._FirePerOrigin()
 	pass
 
-
+# -------------------------------------------------------
+# Procesing fire per projectile origin (sequenced)
+# -------------------------------------------------------
+func _process(delta):
+	if self.sequenceEnabled:
+		self.currentTime += delta
+		if self.currentTime>=self.fireDelay:
+			self.currentTime = 0
+			self._FireFromOrigin(self.currentOrigin)
+			self.currentOrigin +=1
+			if self.currentOrigin>=self.origins.size():
+				self.currentOrigin = 0
+				self.sequenceEnabled = false
+				self.fireIsEnabled = true
+			pass
+		
+	pass
 # -------------------------------------------------------
 # HELPERS
 # -------------------------------------------------------
-func _FireAtOnce(container:Node2D)->void:
+func _FireAtOnce()->void:
+	self.fireIsEnabled = false
 	for i in range(self.origins.size()):
-		self._FireFromOrigin(i,container)
+		self._FireFromOrigin(i)
+	self.fireIsEnabled = true
 	pass
 	
 func _FirePerOrigin()->void:
+	self.currentOrigin = 0
+	self.currentTime = 0
+	self.sequenceEnabled = true
+	self.fireIsEnabled = false
 	pass
 	
-func _FireFromOrigin(id:int,container:Node2D)-> void:
+func _FireFromOrigin(id:int)-> void:
 	
 	var bullet = self.projectilePrefab.instance() 	
 	
@@ -73,6 +99,6 @@ func _FireFromOrigin(id:int,container:Node2D)-> void:
 	
 	bullet.SetFireDirectionFromAngle(newFireAngle)
 	
-	container.add_child(bullet)
+	self.container.add_child(bullet)
 	pass
 

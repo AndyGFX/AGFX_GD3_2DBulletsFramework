@@ -1,20 +1,22 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scripts/BulletsFramework/BF_Emitter.gd" type="Script" id=1]
-[ext_resource path="res://Prefabs/BF_Origin/BF_Origin.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Prefabs/BF_Projectiles/BF_Projectile.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Prefabs/BF_Origin/BF_Origin.tscn" type="PackedScene" id=3]
 
 [node name="BF_Emitter" type="Node2D"]
 script = ExtResource( 1 )
+projectilePrefab = ExtResource( 2 )
 
-[node name="BF_Origin0" parent="." instance=ExtResource( 2 )]
+[node name="BF_Origin0" parent="." instance=ExtResource( 3 )]
 position = Vector2( 0, -7 )
 rotation = -0.261799
 dispersion = 5.0
 
-[node name="BF_Origin1" parent="." instance=ExtResource( 2 )]
+[node name="BF_Origin1" parent="." instance=ExtResource( 3 )]
 dispersion = 5.0
 
-[node name="BF_Origin2" parent="." instance=ExtResource( 2 )]
+[node name="BF_Origin2" parent="." instance=ExtResource( 3 )]
 position = Vector2( 0, 7 )
 rotation = 0.261799
 dispersion = 5.0

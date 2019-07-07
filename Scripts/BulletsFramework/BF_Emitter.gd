@@ -4,7 +4,7 @@ extends Node2D
 export (PackedScene) var projectilePrefab
 export (float) var fireDelay = 0.5
 export (bool) var fireAtOnce = true
-
+export (bool) var autoFireState = false
 var fireIsEnabled:bool = true
 
 # set group
@@ -15,6 +15,7 @@ var sequenceEnabled:bool=false
 var currentTime:float = 0
 var currentOrigin:int = 0
 var container:Node2D
+var autoFireTimer:Timer
 
 func _ready():
 	
@@ -27,6 +28,9 @@ func _ready():
 		var origin = self.get_child(i)
 		if origin.is_in_group("BULLET_ORIGIN"):
 			self.origins.append(origin)
+			
+	self.autoFireTimer = Utils.create_timer(1.0,self,"Fire",false)
+	
 	pass
 
 # -------------------------------------------------------
@@ -40,7 +44,25 @@ func SetProjectileSceneContainer(container:Node2D)->void:
 	self.container = container
 	
 # -------------------------------------------------------
-# Fire 
+# AutoFire - START
+# -------------------------------------------------------
+func AutoFireStart(delay:float)->void:
+	self.autoFireTimer.set_wait_time(delay)
+	self.autoFireTimer.set_one_shot(false)
+	self.autoFireTimer.start()
+	self.autoFireState = true
+	pass
+
+# -------------------------------------------------------
+# AutoFire - STOP
+# -------------------------------------------------------
+func AutoFireStop()->void:
+	self.autoFireTimer.stop()
+	self.autoFireState = false
+	pass
+	
+# -------------------------------------------------------
+# Fire (single shot)
 # -------------------------------------------------------
 func Fire()->void:
 	

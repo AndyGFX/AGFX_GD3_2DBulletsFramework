@@ -11,7 +11,7 @@ script/source = "extends Node2D
 export (PackedScene) var projectilePrefab
 export (float) var fireDelay = 0.5
 export (bool) var fireAtOnce = true
-
+export (bool) var autoFireState = false
 var fireIsEnabled:bool = true
 
 # set group
@@ -22,6 +22,7 @@ var sequenceEnabled:bool=false
 var currentTime:float = 0
 var currentOrigin:int = 0
 var container:Node2D
+var autoFireTimer:Timer
 
 func _ready():
 	
@@ -34,6 +35,9 @@ func _ready():
 		var origin = self.get_child(i)
 		if origin.is_in_group(\"BULLET_ORIGIN\"):
 			self.origins.append(origin)
+			
+	self.autoFireTimer = Utils.create_timer(1.0,self,\"Fire\",false)
+	
 	pass
 
 # -------------------------------------------------------
@@ -47,7 +51,25 @@ func SetProjectileSceneContainer(container:Node2D)->void:
 	self.container = container
 	
 # -------------------------------------------------------
-# Fire 
+# AutoFire - START
+# -------------------------------------------------------
+func AutoFireStart(delay:float)->void:
+	self.autoFireTimer.set_wait_time(delay)
+	self.autoFireTimer.set_one_shot(false)
+	self.autoFireTimer.start()
+	self.autoFireState = true
+	pass
+
+# -------------------------------------------------------
+# AutoFire - STOP
+# -------------------------------------------------------
+func AutoFireStop()->void:
+	self.autoFireTimer.stop()
+	self.autoFireState = false
+	pass
+	
+# -------------------------------------------------------
+# Fire (single shot)
 # -------------------------------------------------------
 func Fire()->void:
 	
@@ -135,7 +157,7 @@ fireDelay = 0.1
 position = Vector2( 290, 83 )
 rotation = 1.5708
 script = SubResource( 1 )
-fireDelay = 0.2
+fireDelay = 0.25
 fireAtOnce = false
 
 [node name="Button_1" type="Button" parent="."]
@@ -148,10 +170,26 @@ text = "Fire #1"
 [node name="CONTAINER" type="Node2D" parent="."]
 
 [node name="Button_2" type="Button" parent="."]
-margin_left = 224.0
-margin_top = 13.0
-margin_right = 334.0
-margin_bottom = 33.0
+margin_left = 231.0
+margin_top = 12.0
+margin_right = 341.0
+margin_bottom = 32.0
 text = "Fire #2"
+
+[node name="Button_AF_ON" type="Button" parent="."]
+margin_left = 128.0
+margin_top = 13.0
+margin_right = 224.0
+margin_bottom = 33.0
+text = "AutoFire ON"
+
+[node name="Button_AF_OFF" type="Button" parent="."]
+margin_left = 129.0
+margin_top = 37.0
+margin_right = 224.0
+margin_bottom = 57.0
+text = "AutoFire OFF"
 [connection signal="pressed" from="Button_1" to="." method="_on_Button_1_pressed"]
 [connection signal="pressed" from="Button_2" to="." method="_on_Button_2_pressed"]
+[connection signal="pressed" from="Button_AF_ON" to="." method="_on_Button_AF_ON_pressed"]
+[connection signal="pressed" from="Button_AF_OFF" to="." method="_on_Button_AF_OFF_pressed"]

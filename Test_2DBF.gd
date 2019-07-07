@@ -30,3 +30,15 @@ func _on_Button_1_pressed():
 func _on_Button_2_pressed():
 	$BF_Emitter_2.Fire()
 	pass 
+
+
+func _on_Button_AF_ON_pressed():
+	$BF_Emitter_1.AutoFireStart(0.5)
+	$BF_Emitter_2.AutoFireStart(0.5)
+	pass # Replace with function body.
+
+
+func _on_Button_AF_OFF_pressed():
+	$BF_Emitter_1.AutoFireStop()
+	$BF_Emitter_2.AutoFireStop()
+	pass # Replace with function body.

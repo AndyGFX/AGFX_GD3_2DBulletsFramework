@@ -1,5 +1,5 @@
 extends Node2D
-
+class_name BF_Emitter
 
 export (PackedScene) var projectilePrefab
 export (float) var fireDelay = 0.5
@@ -17,6 +17,8 @@ var currentOrigin:int = 0
 var container:Node2D
 var autoFireTimer:Timer
 
+
+
 func _ready():
 	
 	# set node group
@@ -30,7 +32,8 @@ func _ready():
 			self.origins.append(origin)
 			
 	self.autoFireTimer = Utils.create_timer(1.0,self,"Fire",false)
-	
+
+
 	pass
 
 # -------------------------------------------------------
@@ -64,8 +67,7 @@ func AutoFireStop()->void:
 # -------------------------------------------------------
 # Fire (single shot)
 # -------------------------------------------------------
-func Fire()->void:
-	
+func Fire()->void:	
 	if !self.fireIsEnabled: return
 	
 	if self.fireAtOnce:

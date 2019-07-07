@@ -8,9 +8,20 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "Node2D",
+"class": "BF_Emitter",
+"language": "GDScript",
+"path": "res://Scripts/BulletsFramework/BF_Emitter.gd"
+}, {
+"base": "Position2D",
+"class": "BF_Origin",
+"language": "GDScript",
+"path": "res://Scripts/BulletsFramework/BF_Origin.gd"
+} ]
 _global_script_class_icons={
-
+"BF_Emitter": "",
+"BF_Origin": ""
 }
 
 [application]

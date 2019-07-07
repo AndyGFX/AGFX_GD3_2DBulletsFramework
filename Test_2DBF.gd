@@ -1,44 +1,40 @@
 extends Node2D
 
 
+var player_1_fire
+var player_2_fire
+
 func _ready():
-	$BF_Emitter_1.PreviewInScene(true);
-	$BF_Emitter_1.SetProjectileSceneContainer($CONTAINER)
 	
-	$BF_Emitter_2.PreviewInScene(true);
-	$BF_Emitter_2.SetProjectileSceneContainer($CONTAINER)
+	self.player_1_fire = get_node("P1_shooting")
+	self.player_1_fire.PreviewInScene(true);
+	self.player_1_fire.SetProjectileSceneContainer($CONTAINER)
+	
+	self.player_2_fire = get_node("P2_shooting")
+	self.player_2_fire.PreviewInScene(true);
+	self.player_2_fire.SetProjectileSceneContainer($CONTAINER)
 	
 	pass
 
 func _process(delta):
 	if Input.is_action_just_pressed("ui_select"):
-		$BF_Emitter_1.Fire()
-		$BF_Emitter_2.Fire()
+		self.player_1_fire.Fire()
 	pass
-
-func _on_Button_pressed():	
-	$BF_Emitter_1.Fire()
-	$BF_Emitter_2.Fire()
-	pass
-
 
 func _on_Button_1_pressed():
-	$BF_Emitter_1.Fire()
+	self.player_1_fire.Fire()
 	pass 
 
 
 func _on_Button_2_pressed():
-	$BF_Emitter_2.Fire()
-	pass 
+	self.player_2_fire.Fire()
 
 
 func _on_Button_AF_ON_pressed():
-	$BF_Emitter_1.AutoFireStart(0.5)
-	$BF_Emitter_2.AutoFireStart(0.5)
-	pass # Replace with function body.
+	self.player_1_fire.AutoFireStart(0.5)
+	self.player_2_fire.AutoFireStart(0.5)
 
 
 func _on_Button_AF_OFF_pressed():
-	$BF_Emitter_1.AutoFireStop()
-	$BF_Emitter_2.AutoFireStop()
-	pass # Replace with function body.
+	self.player_1_fire.AutoFireStop()
+	self.player_2_fire.AutoFireStop()

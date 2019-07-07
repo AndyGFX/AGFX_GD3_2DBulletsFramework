@@ -1,5 +1,6 @@
 tool
-extends Node2D
+extends Position2D
+class_name BF_Origin
 
 export var dispersion:float = 0
 export var previewInScene:bool = true
@@ -21,19 +22,19 @@ func _draw():
 func preview_in_editor():
 	
 	# draw precision FOV
-	self.draw_fov(self,$SpawnPoint.position,64,-self.dispersion,self.dispersion,Color.red)
+	self.draw_fov(self,Vector2(0,0),64,-self.dispersion,self.dispersion,Color.red)
 	
 	# draw main projectile direction
 	self.draw_line(
-		$SpawnPoint.position + Vector2(1,0),
-		$SpawnPoint.position + Vector2(32,0),Color.green,1,true)
+		Vector2(1,0),
+		Vector2(32,0),Color.green,1,true)
 	
 	
 	self.draw_line(
-		$SpawnPoint.position + Vector2(1,0),
-		$SpawnPoint.position + Vector2(1,0)+Vector2(8,0),Color.green,1.5,true)
+		Vector2(1,0),
+		Vector2(1,0)+Vector2(8,0),Color.green,1.5,true)
 		
-	self.draw_line($SpawnPoint.position + Vector2(0,-2),$SpawnPoint.position + Vector2(0,2),Color.green,1.5,true)
+	self.draw_line(Vector2(0,-2),Vector2(0,2),Color.green,1.5,true)
 
 	pass
 	
@@ -50,16 +51,16 @@ func draw_fov( canvas:CanvasItem, center, radius, angleFrom, angleTo, color ):
 	canvas.draw_line(center,pointsArc[0],color)
 	canvas.draw_line(center,pointsArc[1],color)
 	canvas.draw_line(pointsArc[0],pointsArc[1],color)
-	#canvas.draw_line(center,center*Vector2(32,0),Color.green)
 	
 	pass	
 	
 func _process(delta):
-	if Engine.is_editor_hint(): update()
+	if Engine.is_editor_hint(): 
+		update()
 	
 func GetSpawnPoint()->Vector2:
 	var res:Vector2 = Vector2()	
-	res = self.position	
+	res = self.get_global_position()
 	return res
 	pass
 	

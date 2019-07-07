@@ -1,5 +1,6 @@
 extends Area2D
 
+class_name BF_Projectile
 
 # projectile demage on hit object sent to object in group ENEMY
 export var damage:float = 25

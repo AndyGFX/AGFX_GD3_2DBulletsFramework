@@ -27,12 +27,12 @@
             - `lifeTime` - when is >0 then projectile is destroyed after reach used time (max distance is always checked)
 
 - ## Hierarchy
-    - [Emitter] + BF_Emitter.gd
-        - [Origin1] + BF_Origin.gd
+    - [Emitter] add BF_Emitter from child node list [+]
+        - [Origin1] add BF_Origin from child node list [+]
         - . . .
-        - [Origin n] + BF_Origin.gd
+        - [Origin n] add BF_Origin from child node list [+]
 
-    - [Projectile] + BF_Projectile.gd
+    - [Projectile] add BF_Projectile class from child node list [+]
         - [CollisionShape2D]
         - [Sprite]
 

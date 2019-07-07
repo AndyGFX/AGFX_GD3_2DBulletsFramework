@@ -18,10 +18,16 @@ _global_script_classes=[ {
 "class": "BF_Origin",
 "language": "GDScript",
 "path": "res://Scripts/BulletsFramework/BF_Origin.gd"
+}, {
+"base": "Area2D",
+"class": "BF_Projectile",
+"language": "GDScript",
+"path": "res://Scripts/BulletsFramework/BF_Projectile.gd"
 } ]
 _global_script_class_icons={
 "BF_Emitter": "",
-"BF_Origin": ""
+"BF_Origin": "",
+"BF_Projectile": ""
 }
 
 [application]

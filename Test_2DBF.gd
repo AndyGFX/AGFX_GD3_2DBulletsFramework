@@ -14,6 +14,8 @@ func _ready():
 	self.player_2_fire.PreviewInScene(true);
 	self.player_2_fire.SetProjectileSceneContainer($CONTAINER)
 	
+	$Control/Button_1.connect("pressed",self,"_on_Button_1_pressed")
+	
 	pass
 
 func _process(delta):

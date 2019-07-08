@@ -10,7 +10,7 @@ var fireIsEnabled:bool = true
 # set group
 const TYPE:String = "BULLET_EMITTER"
 
-var origins:Array
+var origins:Array = []
 var sequenceEnabled:bool=false
 var currentTime:float = 0
 var currentOrigin:int = 0
@@ -23,18 +23,16 @@ func _ready():
 	
 	# set node group
 	add_to_group(TYPE)
-	
+	print(self.get_name())
 	# get all assigned origins
 	var count = self.get_child_count()
 	for i in range(count):
+		print("  Origin:"+String(i))
 		var origin = self.get_child(i)
 		if origin.is_in_group("BULLET_ORIGIN"):
 			self.origins.append(origin)
 			
 	self.autoFireTimer = Utils.create_timer(1.0,self,"Fire",false)
-
-
-	pass
 
 # -------------------------------------------------------
 # Preview emitter setup in scene
@@ -54,7 +52,6 @@ func AutoFireStart(delay:float)->void:
 	self.autoFireTimer.set_one_shot(false)
 	self.autoFireTimer.start()
 	self.autoFireState = true
-	pass
 
 # -------------------------------------------------------
 # AutoFire - STOP
@@ -62,12 +59,12 @@ func AutoFireStart(delay:float)->void:
 func AutoFireStop()->void:
 	self.autoFireTimer.stop()
 	self.autoFireState = false
-	pass
 	
 # -------------------------------------------------------
 # Fire (single shot)
 # -------------------------------------------------------
 func Fire()->void:	
+	print("-> FIRE node: "+self.get_name())
 	if !self.fireIsEnabled: return
 	
 	if self.fireAtOnce:
@@ -75,7 +72,6 @@ func Fire()->void:
 		self.fireIsEnabled = true
 	else:
 		self._FirePerOrigin()
-	pass
 
 # -------------------------------------------------------
 # Procesing fire per projectile origin (sequenced)
@@ -91,9 +87,7 @@ func _process(delta):
 				self.currentOrigin = 0
 				self.sequenceEnabled = false
 				self.fireIsEnabled = true
-			pass
-		
-	pass
+
 # -------------------------------------------------------
 # HELPERS
 # -------------------------------------------------------
@@ -102,18 +96,16 @@ func _FireAtOnce()->void:
 	for i in range(self.origins.size()):
 		self._FireFromOrigin(i)
 	self.fireIsEnabled = true
-	pass
 	
 func _FirePerOrigin()->void:
 	self.currentOrigin = 0
 	self.currentTime = 0
 	self.sequenceEnabled = true
 	self.fireIsEnabled = false
-	pass
 	
 func _FireFromOrigin(id:int)-> void:
 	
-	var bullet = self.projectilePrefab.instance() 	
+	var bullet = self.projectilePrefab.instance()
 	
 	bullet.set_global_transform(self.origins[id].get_global_transform())
 	
@@ -124,5 +116,4 @@ func _FireFromOrigin(id:int)-> void:
 	bullet.SetFireDirectionFromAngle(newFireAngle)
 	
 	self.container.add_child(bullet)
-	pass
 

@@ -8,17 +8,54 @@ export var previewInScene:bool = true
 # set group
 const TYPE:String = "BULLET_ORIGIN"
 
+# -------------------------------------------------------
+# Prepare on start
+# -------------------------------------------------------
 func _ready():
 	add_to_group(TYPE)
-	pass
 	
+# -------------------------------------------------------
+# DRAW
+# -------------------------------------------------------
 func _draw():
 	if Engine.is_editor_hint():
 		self.preview_in_editor()
 	if previewInScene:
 		self.preview_in_editor()
-	pass
+
 	
+# -------------------------------------------------------
+# Update scene
+# -------------------------------------------------------
+func _process(delta):
+	if Engine.is_editor_hint(): 
+		update()
+
+# -------------------------------------------------------
+# Return global position
+# -------------------------------------------------------
+func GetSpawnPoint()->Vector2:
+	var res:Vector2 = Vector2()	
+	res = self.get_global_position()
+	return res
+
+# -------------------------------------------------------
+# Return normalized direction from current rotation as vector
+# -------------------------------------------------------
+func GetDirection()->Vector2:
+	var res:Vector2 = Vector2(1,0)
+	res = Vector2( cos(self.rotation), sin(self.rotation))
+	return res
+
+# -------------------------------------------------------
+# Return current rotation in degrees
+# -------------------------------------------------------
+func GetAngle()->float:
+	return self.get_rotation_degrees()	
+
+# -------------------------------------------------------
+# HELPERS
+# -------------------------------------------------------
 func preview_in_editor():
 	
 	# draw precision FOV
@@ -36,8 +73,7 @@ func preview_in_editor():
 		
 	self.draw_line(Vector2(0,-2),Vector2(0,2),Color.green,1.5,true)
 
-	pass
-	
+# -------------------------------------------------------
 func draw_fov( canvas:CanvasItem, center, radius, angleFrom, angleTo, color ):
 	
 	var pointsArc = PoolVector2Array()
@@ -51,25 +87,3 @@ func draw_fov( canvas:CanvasItem, center, radius, angleFrom, angleTo, color ):
 	canvas.draw_line(center,pointsArc[0],color)
 	canvas.draw_line(center,pointsArc[1],color)
 	canvas.draw_line(pointsArc[0],pointsArc[1],color)
-	
-	pass	
-	
-func _process(delta):
-	if Engine.is_editor_hint(): 
-		update()
-	
-func GetSpawnPoint()->Vector2:
-	var res:Vector2 = Vector2()	
-	res = self.get_global_position()
-	return res
-	pass
-	
-func GetDirection()->Vector2:
-	var res:Vector2 = Vector2(1,0)
-	res = Vector2( cos(self.rotation), sin(self.rotation))
-	return res
-	pass
-	
-func GetAngle()->float:
-	return self.get_rotation_degrees()	
-	pass

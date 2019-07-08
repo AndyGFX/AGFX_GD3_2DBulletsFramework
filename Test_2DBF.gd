@@ -16,26 +16,19 @@ func _ready():
 	
 	$Control/Button_1.connect("pressed",self,"_on_Button_1_pressed")
 	
-	pass
-
 func _process(delta):
 	if Input.is_action_just_pressed("ui_select"):
 		self.player_1_fire.Fire()
-	pass
 
 func _on_Button_1_pressed():
 	self.player_1_fire.Fire()
-	pass 
-
 
 func _on_Button_2_pressed():
 	self.player_2_fire.Fire()
 
-
 func _on_Button_AF_ON_pressed():
 	self.player_1_fire.AutoFireStart(0.5)
 	self.player_2_fire.AutoFireStart(0.5)
-
 
 func _on_Button_AF_OFF_pressed():
 	self.player_1_fire.AutoFireStop()

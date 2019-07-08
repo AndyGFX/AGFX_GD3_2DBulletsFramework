@@ -18,7 +18,9 @@ var container:Node2D
 var autoFireTimer:Timer
 
 
-
+# -------------------------------------------------------
+# Prepare on start
+# -------------------------------------------------------
 func _ready():
 	
 	# set node group
@@ -96,13 +98,15 @@ func _FireAtOnce()->void:
 	for i in range(self.origins.size()):
 		self._FireFromOrigin(i)
 	self.fireIsEnabled = true
-	
+
+# -------------------------------------------------------
 func _FirePerOrigin()->void:
 	self.currentOrigin = 0
 	self.currentTime = 0
 	self.sequenceEnabled = true
 	self.fireIsEnabled = false
-	
+
+# -------------------------------------------------------
 func _FireFromOrigin(id:int)-> void:
 	
 	var bullet = self.projectilePrefab.instance()

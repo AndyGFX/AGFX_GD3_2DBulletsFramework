@@ -69,7 +69,6 @@ rotation = 1.5708
 projectilePrefab = ExtResource( 4 )
 fireDelay = 0.1
 fireAtOnce = false
-
 [connection signal="pressed" from="Control/Button_2" to="." method="_on_Button_2_pressed"]
 [connection signal="pressed" from="Control/Button_AF_ON" to="." method="_on_Button_AF_ON_pressed"]
 [connection signal="pressed" from="Control/Button_AF_OFF" to="." method="_on_Button_AF_OFF_pressed"]

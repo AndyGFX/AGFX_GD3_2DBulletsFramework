@@ -8,11 +8,6 @@ func _ready():
 	add_to_group(TYPE)
 	pass
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
-
 
 func SetDamage(damage)->void:
 	
@@ -21,4 +16,3 @@ func SetDamage(damage)->void:
 		queue_free()
 	
 	print ("Enemy health:"+String(self.health))
-	pass

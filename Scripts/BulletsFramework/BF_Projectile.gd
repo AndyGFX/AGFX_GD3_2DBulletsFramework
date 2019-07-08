@@ -33,8 +33,6 @@ func _ready():
 	
 	if self.lifeTime>0:
 		self._localTimer = Utils.create_timer(self.lifeTime, self, "Destroy", true)
-	
-	pass
 
 # ---------------------------------------------------------
 # Set fire direction from vector
@@ -46,7 +44,6 @@ func SetFireDirectionFromVector(dir:Vector2)->void:
 # Set fire direction from angle (radians)
 # ---------------------------------------------------------
 func SetFireDirectionFromAngle(angle:float)->void:
-	
 	self.velocity = Vector2(cos(deg2rad(angle)), sin(deg2rad(angle)))
 	
 	
@@ -68,7 +65,6 @@ func _physics_process(delta):
 func _on_area_enter(other):
 	if other.is_in_group("SOLID"):
 		self.Destroy() 
-	pass
 
 # ---------------------------------------------------------
 # Check Body hit
@@ -81,8 +77,9 @@ func _on_body_enter(other):
 			print("WARNING: BF Projectile hit ENEMY without fnc SetDamage(damage) !")
 			pass
 		self.Destroy()
-	pass  
 
+# ---------------------------------------------------------
+# Destroy self
+# ---------------------------------------------------------
 func Destroy()->void:
 	queue_free()
-	pass

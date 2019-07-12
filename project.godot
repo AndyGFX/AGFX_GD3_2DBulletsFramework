@@ -10,6 +10,11 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Node2D",
+"class": "BF_EmitteController",
+"language": "GDScript",
+"path": "res://Scripts/BulletsFramework/BF_EmitterController.gd"
+}, {
+"base": "Node2D",
 "class": "BF_Emitter",
 "language": "GDScript",
 "path": "res://Scripts/BulletsFramework/BF_Emitter.gd"
@@ -25,6 +30,7 @@ _global_script_classes=[ {
 "path": "res://Scripts/BulletsFramework/BF_Projectile.gd"
 } ]
 _global_script_class_icons={
+"BF_EmitteController": "res://Scripts/BulletsFramework/icon_bf_controller.svg",
 "BF_Emitter": "",
 "BF_Origin": "",
 "BF_Projectile": ""

@@ -17,6 +17,7 @@ var currentOrigin:int = 0
 var container:Node2D
 var autoFireTimer:Timer
 
+var _tween:Tween
 
 # -------------------------------------------------------
 # Prepare on start
@@ -90,6 +91,22 @@ func _process(delta):
 				self.sequenceEnabled = false
 				self.fireIsEnabled = true
 
+
+func SetupTween(speed, property, initial_val, final_val, duration, trans_type, ease_type, delay=0, repeat = false):
+	
+	self._tween = Tween.new()
+	self.add_child(self._tween)
+	self._tween.speed = speed
+	self._tween.repeat = repeat
+	self._tween.interpolate_property(self, property, initial_val, final_val, duration, trans_type, ease_type, delay)
+	pass
+
+func StartTween():
+	self._tween.start()
+	
+func StopTween():
+	self._tween.stop(self)
+	
 # -------------------------------------------------------
 # HELPERS
 # -------------------------------------------------------

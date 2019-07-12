@@ -25,6 +25,11 @@
             - `speed` - projectile speed
             - `maxDistance` - projectile is destroyed self when value is reached
             - `lifeTime` - when is >0 then projectile is destroyed after reach used time (max distance is always checked)
+    - **BF_EmitterController**
+        - for control of any properties via tween
+        - `Setup((property, initial_val, final_val, duration, trans_type, ease_type, delay=0, repeat = false)` - define tween behaviour
+        - `Start()` - start tween
+        - `Stop()` - stop tween
 
 - ## Hierarchy
     - [Emitter] add BF_Emitter from child node list [+]

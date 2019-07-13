@@ -46,3 +46,4 @@ func _on_Button_AF_ON_pressed():
 func _on_Button_AF_OFF_pressed():
 	self.player_1_fire.AutoFireStop()
 	self.player_2_fire.AutoFireStop()
+	self.controled_fire.AutoFireStop()

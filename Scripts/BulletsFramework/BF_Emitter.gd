@@ -35,7 +35,7 @@ func _ready():
 		if origin.is_in_group("BULLET_ORIGIN"):
 			self.origins.append(origin)
 			
-	self.autoFireTimer = Utils.create_timer(1.0,self,"Fire",false)
+	self.autoFireTimer = Utils.CreateTimer(1.0,self,"Fire",false)
 
 # -------------------------------------------------------
 # Preview emitter setup in scene
@@ -126,15 +126,11 @@ func _FirePerOrigin()->void:
 # -------------------------------------------------------
 func _FireFromOrigin(id:int)-> void:
 	
-	var bullet = self.projectilePrefab.instance()
-	
+	var bullet = Utils.Instantiate(self.projectilePrefab,self.container,self.origins[id].get_global_position())
 	bullet.set_global_transform(self.origins[id].get_global_transform())
 	
-	bullet.set_position(self.origins[id].get_global_position())	
 	var currentOriginAngle:float = self.origins[id].GetAngle()
 	var newFireAngle:float = rad2deg(self.get_rotation()) + currentOriginAngle + rand_range(-self.origins[id].dispersion,self.origins[id].dispersion)
 	
 	bullet.SetFireDirectionFromAngle(newFireAngle)
-	
-	self.container.add_child(bullet)
 

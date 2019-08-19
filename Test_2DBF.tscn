@@ -26,6 +26,7 @@ position = Vector2( 134, 237 )
 position = Vector2( 327, 247 )
 
 [node name="Control" type="Control" parent="."]
+editor/display_folded = true
 margin_right = 40.0
 margin_bottom = 40.0
 
@@ -74,6 +75,7 @@ position = Vector2( 170, 120 )
 rotation = 1.5708
 projectilePrefab = ExtResource( 4 )
 fireDelay = 0.1
+
 [connection signal="pressed" from="Control/Button_2" to="." method="_on_Button_2_pressed"]
 [connection signal="pressed" from="Control/Button_AF_ON" to="." method="_on_Button_AF_ON_pressed"]
 [connection signal="pressed" from="Control/Button_AF_OFF" to="." method="_on_Button_AF_OFF_pressed"]

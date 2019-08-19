@@ -4,7 +4,7 @@ extends Node2D
 var player_1_fire
 var player_2_fire
 var controled_fire
-var eControl:BF_EmitteController
+var eControl:BF_EmitteController_LookAt
 func _ready():
 
 	
@@ -24,12 +24,13 @@ func _ready():
 	self.controled_fire.PreviewInScene(true);
 	self.controled_fire.SetProjectileSceneContainer($CONTAINER)
 	
-	self.eControl = BF_EmitteController.new(self.controled_fire)
-	self.eControl.Setup("rotation_degrees",0,360,5,Tween.TRANS_LINEAR, Tween.EASE_IN_OUT,0,true)
+	self.eControl = BF_EmitteController_LookAt.new(self.controled_fire,null)
+	
 	self.eControl.Start()
 	
 func _process(delta):
-	if Input.is_action_just_pressed("ui_select"):
+	self.eControl.LookAt(get_global_mouse_position())
+	if Input.is_action_just_pressed("ui_select"):		
 		self.player_1_fire.Fire()
 
 func _on_Button_1_pressed():

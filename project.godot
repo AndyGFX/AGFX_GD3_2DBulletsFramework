@@ -15,6 +15,11 @@ _global_script_classes=[ {
 "path": "res://Scripts/BulletsFramework/BF_EmitterController.gd"
 }, {
 "base": "Node2D",
+"class": "BF_EmitteController_LookAt",
+"language": "GDScript",
+"path": "res://Scripts/BulletsFramework/BF_EmitterController_LookAt.gd"
+}, {
+"base": "Node2D",
 "class": "BF_Emitter",
 "language": "GDScript",
 "path": "res://Scripts/BulletsFramework/BF_Emitter.gd"
@@ -31,6 +36,7 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "BF_EmitteController": "res://Scripts/BulletsFramework/icon_bf_controller.svg",
+"BF_EmitteController_LookAt": "res://Scripts/BulletsFramework/icon_bf_controller.svg",
 "BF_Emitter": "",
 "BF_Origin": "",
 "BF_Projectile": ""

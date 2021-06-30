@@ -56,10 +56,10 @@ func GetAngle()->float:
 # -------------------------------------------------------
 # HELPERS
 # -------------------------------------------------------
-func preview_in_editor():
+func preview_in_editor()->void:
 	
 	# draw precision FOV
-	self.draw_fov(self,Vector2(0,0),64,-self.dispersion,self.dispersion,Color.red)
+	self.draw_fov(self,Vector2(0,0),64.0,-self.dispersion,self.dispersion,Color.red)
 	
 	# draw main projectile direction
 	self.draw_line(
@@ -74,16 +74,16 @@ func preview_in_editor():
 	self.draw_line(Vector2(0,-2),Vector2(0,2),Color.green,1.5,true)
 
 # -------------------------------------------------------
-func draw_fov( canvas:CanvasItem, center, radius, angleFrom, angleTo, color ):
+func draw_fov( canvas:CanvasItem, center:Vector2, radius:float, angleFrom:float, angleTo:float, color:Color )->void:
 	
 	var pointsArc = PoolVector2Array()
-    
+	
 	var point = center + Vector2( cos(deg2rad(angleFrom)), sin(deg2rad(angleFrom)) )* radius
 	pointsArc.push_back( point )
 	
 	point = center + Vector2( cos(deg2rad(angleTo)), sin(deg2rad(angleTo)) )* radius
 	pointsArc.push_back( point )
-        
+		
 	canvas.draw_line(center,pointsArc[0],color)
 	canvas.draw_line(center,pointsArc[1],color)
 	canvas.draw_line(pointsArc[0],pointsArc[1],color)
